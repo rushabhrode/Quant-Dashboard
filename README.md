@@ -31,15 +31,29 @@ The system is designed as a Producer-Consumer application with a shared state ma
 ## 🧮 Analytics Methodology
 
 ### Spread & Z-Score
-We use a standard cointegration approach:
-$$ Spread_t = Price_{1,t} - \beta \times Price_{2,t} $$
-$$ Z_t = \frac{Spread_t - \mu_{spread}}{\sigma_{spread}} $$
 
-Where $\mu$ and $\sigma$ are rolling mean/std over the defined window (default 20).
+We use a standard cointegration approach:
+
+$$
+Spread_t = Price_{1,t} - \beta \times Price_{2,t}
+$$
+
+$$
+Z_t = \frac{Spread_t - \mu_{spread}}{\sigma_{spread}}
+$$
+
+Where $\mu$ and $\sigma$ are the rolling mean and standard deviation over the defined window (default = 20).
+
+---
 
 ### OLS Hedge Ratio
+
 When enabled, $\beta$ is dynamically calculated using Ordinary Least Squares on the rolling window:
-$$ Y = \beta X + \alpha + \epsilon $$
+
+$$
+Y = \beta X + \alpha + \epsilon
+$$
+
 
 ### Stationarity (ADF)
 The Augmented Dickey-Fuller test checks if the spread is mean-reverting (Stationary). A p-value < 0.05 suggests a valid arb opportunity.
